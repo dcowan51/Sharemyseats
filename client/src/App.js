@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import { useAppState } from './state';
 import { getGameById } from './data/games';
@@ -25,6 +25,22 @@ export default function App() {
   const [openGameId, setOpenGameId] = useState(null);
   const [openNpId, setOpenNpId] = useState(null);
   const [printingNp, setPrintingNp] = useState(null);
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  // Close mobile menu on Escape key.
+  useEffect(() => {
+    if (!menuOpen) return;
+    const handler = (e) => { if (e.key === 'Escape') setMenuOpen(false); };
+    window.addEventListener('keydown', handler);
+    return () => window.removeEventListener('keydown', handler);
+  }, [menuOpen]);
+
+  function pickTab(id) {
+    setTab(id);
+    setOpenGameId(null);
+    setOpenNpId(null);
+    setMenuOpen(false);
+  }
 
   const openGame = (id) => { setOpenGameId(id); };
   const closeGame = () => setOpenGameId(null);
@@ -45,12 +61,12 @@ export default function App() {
             <span className="brand-tag">Never let a season ticket go to waste.</span>
           </span>
         </div>
-        <nav className="tabs">
+        <nav className="tabs desktop-tabs">
           {TABS.map(t => (
             <button
               key={t.id}
               className={`tab ${tab === t.id && !openGameId && !openNpId ? 'active' : ''}`}
-              onClick={() => { setTab(t.id); setOpenGameId(null); setOpenNpId(null); }}
+              onClick={() => pickTab(t.id)}
             >
               {t.label}
               {t.id === 'messages' && pendingCount > 0 && (
@@ -59,7 +75,43 @@ export default function App() {
             </button>
           ))}
         </nav>
+        <button
+          className={`hamburger ${menuOpen ? 'is-open' : ''}`}
+          onClick={() => setMenuOpen(v => !v)}
+          aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+          aria-expanded={menuOpen}
+          aria-controls="mobile-menu-panel"
+        >
+          <span /><span /><span />
+        </button>
       </header>
+
+      {menuOpen && (
+        <div className="mobile-menu-backdrop" onClick={() => setMenuOpen(false)} aria-hidden="true" />
+      )}
+      <nav
+        id="mobile-menu-panel"
+        className={`mobile-menu ${menuOpen ? 'is-open' : ''}`}
+        aria-hidden={!menuOpen}
+      >
+        <div className="mobile-menu-eyebrow">Navigate</div>
+        {TABS.map(t => (
+          <button
+            key={t.id}
+            className={`mobile-menu-item ${tab === t.id && !openGameId && !openNpId ? 'active' : ''}`}
+            onClick={() => pickTab(t.id)}
+            tabIndex={menuOpen ? 0 : -1}
+          >
+            <span>{t.label}</span>
+            {t.id === 'messages' && pendingCount > 0 && (
+              <span className="mobile-menu-badge">{pendingCount}</span>
+            )}
+          </button>
+        ))}
+        <div className="mobile-menu-foot">
+          Pat Cowan · Diamond Club STH
+        </div>
+      </nav>
 
       <main className="main">
         {game ? (
