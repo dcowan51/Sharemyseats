@@ -14,7 +14,7 @@ ShareMySeats is a software product that turns Tampa Bay Rays season ticket holde
 
 The product gives a season ticket holder, or their assistant, one place to make weekly picks for every game: assign each seat to a person, donate it to a vetted nonprofit, or mark it taken. Once a recipient is assigned, the actual ticket transfer happens through MLB Ballpark, Ticketmaster, or Apple Wallet — using infrastructure the Rays organization already pays for.
 
-Wrapped around the workflow are three differentiated capabilities that are not present in any current ticket-management product: a Rays Foundation 2× donation match that turns charitable seats into a marketing asset, automated tax-deduction receipts ready for a CPA, and a closed-loop impact feed where nonprofits send back photos and notes from the families who got the seats.
+Wrapped around the workflow are two differentiated capabilities that are not present in any current ticket-management product: automated tax-deduction receipts ready for a CPA, and a closed-loop impact feed where nonprofits send back photos and notes from the families who got the seats.
 
 The pitch to the Rays organization is not "buy software." It is "co-brand and pilot a retention engine that pays for itself through reduced season-ticket-holder churn, increased community throughput, and a defensible local narrative."
 
@@ -68,23 +68,15 @@ After a ticket has been transferred, the seat is locked from further edits to pr
 
 ### What makes it different
 
-Three capabilities elevate ShareMySeats from a tracker into a product the Rays organization should want to brand and promote:
+Two capabilities elevate ShareMySeats from a tracker into a product the Rays organization should want to brand and promote:
 
-#### 1. Rays Foundation 2× Match
-
-The Rays Foundation matches the first ten donated seats per holder per season at face value. Donations made seven or more days before first pitch get a 2× multiplier. This single feature accomplishes three goals at once:
-
-- It turns charitable giving into a measurable, gamified behavior with a clear financial outcome.
-- It creates an explicit early-action incentive — the donor is rewarded financially for not waiting until the last minute, which is exactly when seats are hardest to redistribute.
-- It positions the Rays Foundation as the engine of the product, not an afterthought, building partnership equity with local nonprofits.
-
-#### 2. Automated Tax-Deduction Receipts
+#### 1. Automated Tax-Deduction Receipts
 
 Every donated seat generates a properly formatted IRS-ready receipt with the Rays Foundation lockup, donor information, recipient organization, fair-market value, and required tax-deductibility language. Holders can export a single combined receipt bundle for their CPA — one PDF with a cover summary table and one numbered receipt per donation.
 
 For high-net-worth holders this is a non-trivial financial asset. A Diamond Club holder donating thirty seats per year at $150 face value is creating $4,500 in claimable charitable deduction value annually. Today that paperwork is informal at best. ShareMySeats makes it automatic.
 
-#### 3. Closed-Loop Impact Stories
+#### 2. Closed-Loop Impact Stories
 
 When a seat is donated, the receiving nonprofit posts a photo and short note from the people who used the seats. The donor sees this in the app's Impact tab — turning an abstract donation into a specific, emotional, shareable moment.
 
@@ -120,12 +112,11 @@ The mission progress bar updates in real time as picks are saved. Completing the
 
 ### Key engagement mechanics
 
-The product uses four overlapping levers to incentivize early, consistent action:
+The product uses three overlapping behavioral levers to incentivize early, consistent action:
 
 - **Loss aversion.** A "Seats missed" counter ticks up when a past game went unhandled. It is impossible to ignore.
 - **Streak preservation.** A "no-miss streak" counts consecutive past games where every seat was filled. Holders fight to protect it.
 - **Lead-time identity.** An "Early Bird" / "On Time" / "Last Minute" status badge based on average lead time creates an identity worth maintaining.
-- **Financial reinforcement.** The 2× early-donation Foundation match makes "donate now" mathematically correct compared to "donate later."
 
 ### Game rating system
 
@@ -206,7 +197,6 @@ Pilot success metrics:
 
 - Open enrollment to the full season ticket holder base
 - Launch co-branded "Rays Season Ticket Member" front-end (production replaces "ShareMySeats" branding)
-- Activate Rays Foundation 2× match program publicly
 - Begin generating end-of-year tax receipt bundles for tax season
 
 ### Phase 2 — Community amplification (months 9-18)
@@ -227,7 +217,6 @@ For the pilot to launch, the Rays organization needs to commit:
 
 - API access to the existing MLB Ballpark transfer infrastructure (a request to MLB Advanced Media)
 - Read access to the STH database for account provisioning
-- Rays Foundation budget allocation for the matched-donation program (capped per holder)
 - One Rays Foundation point of contact for nonprofit vetting
 - Marketing co-sign for the launch announcement
 
