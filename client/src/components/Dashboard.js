@@ -5,7 +5,6 @@ import { getGameById } from '../data/games';
 import Rating from './Rating';
 import SeasonProgress from './SeasonProgress';
 import Achievements, { computeAchievements } from './Achievements';
-import RaysFoundationMatch from './RaysFoundationMatch';
 import SeatsManagerDialog from './SeatsManagerDialog';
 import TransferTicketModal from './TransferTicketModal';
 import Toast from './Toast';
@@ -174,8 +173,6 @@ export default function Dashboard({ games, seats, assignments, messages, people,
         onOpenGame={onOpenGame}
         onPick={(id) => setPickGameId(id)}
       />
-
-      <RaysFoundationMatch assignments={assignments} nonprofits={nonprofits} />
 
       <Achievements achievements={achievements} />
 

@@ -123,7 +123,7 @@ export default function SeasonProgress({ games, seats, assignments, onOpenGame, 
         )}
         {missionComplete && (
           <div className="sp-mission-done">
-            ✨ Mission complete — your streak is safe and your Foundation match is on track.
+            ✨ Mission complete — your streak is safe and every seat this week is in good hands.
           </div>
         )}
       </div>
