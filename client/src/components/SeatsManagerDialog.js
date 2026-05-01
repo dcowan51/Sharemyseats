@@ -253,15 +253,18 @@ export default function SeatsManagerDialog({ game, seats, currentMap, people, no
 
         <div className="modal-foot">
           <button className="btn secondary" onClick={onClose}>Cancel</button>
-          <button className="btn secondary" onClick={save}>Save</button>
-          <button
-            className="btn"
-            onClick={saveAndTransfer}
-            disabled={personAssignCount === 0}
-            title={personAssignCount === 0 ? 'Assign a seat to someone first' : 'Save and send tickets via MLB Ballpark / Ticketmaster / Apple Wallet'}
-          >
-            Save &amp; transfer{personAssignCount > 0 ? ` ${personAssignCount}` : ''} →
+          <button className="btn" onClick={save}>
+            {personAssignCount > 0 ? 'Save' : 'Save all 4 seats'}
           </button>
+          {personAssignCount > 0 && (
+            <button
+              className="btn"
+              onClick={saveAndTransfer}
+              title="Save and send tickets via MLB Ballpark / Ticketmaster / Apple Wallet"
+            >
+              Save &amp; transfer {personAssignCount} →
+            </button>
+          )}
         </div>
       </div>
     </div>
