@@ -2011,6 +2011,7 @@ button.entity-row.entity-clickable:hover .np-row-arrow { color: var(--rays-navy)
   padding: 6vh 20px 20px;
   overflow-y: auto;
   animation: fadeIn 0.2s ease;
+  -webkit-overflow-scrolling: touch;
 }
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 @keyframes pop { from { opacity: 0; transform: translateY(8px) scale(0.985); } to { opacity: 1; transform: none; } }
@@ -2387,4 +2388,188 @@ button.entity-row.entity-clickable:hover .np-row-arrow { color: var(--rays-navy)
   .game-row { grid-template-columns: 56px 1fr; }
   .game-row .rating { grid-column: 2; justify-self: start; margin-top: 4px; }
   .recap-strip { grid-template-columns: 1fr; }
+}
+
+/* ============================================================ */
+/* MOBILE OPTIMIZATIONS                                         */
+/* ============================================================ */
+
+/* Make sure tap targets meet ~44px iOS guideline */
+@media (max-width: 720px) and (pointer: coarse) {
+  .btn, .btn.small { min-height: 44px; }
+  .toggle button { min-height: 40px; }
+  .tab { min-height: 40px; padding: 8px 16px; }
+  .filter-input { min-height: 44px; }
+  .seat-edit-btn { min-height: 32px; padding: 6px 12px; }
+}
+
+/* Sticky modal footer on phones so primary action stays reachable */
+@media (max-width: 720px) {
+  .modal-overlay {
+    padding: 3vh 8px 8px;
+  }
+  .modal {
+    border-radius: var(--radius-md) var(--radius-md) 0 0;
+    margin-bottom: 0;
+    max-height: calc(100vh - 4vh);
+  }
+  .modal-foot {
+    position: sticky;
+    bottom: 0;
+    background: white;
+    border-top: 1px solid var(--line);
+    box-shadow: 0 -4px 16px rgba(9, 44, 92, 0.06);
+    flex-wrap: wrap;
+    gap: 8px;
+    padding-bottom: max(14px, env(safe-area-inset-bottom));
+  }
+  .modal-foot .btn {
+    flex: 1 1 auto;
+    min-width: 0;
+    white-space: nowrap;
+  }
+  .modal-foot .btn.secondary { flex: 0 0 auto; }
+}
+
+/* Bulk dialog: 3-button footer wraps cleanly with primary on its own row */
+@media (max-width: 540px) {
+  .modal-foot { flex-direction: column-reverse; }
+  .modal-foot .btn { width: 100%; flex: none; }
+}
+
+/* Transfer ticket: tighter stub, stacked batch list */
+@media (max-width: 540px) {
+  .transfer-ticket {
+    grid-template-columns: 56px 1fr;
+  }
+  .transfer-ticket-stub { padding: 16px 4px; }
+  .transfer-ticket-team { font-size: 14px; }
+  .transfer-ticket-body { padding: 16px 16px 12px; }
+  .transfer-ticket-matchup { font-size: 18px; }
+  .transfer-ticket-grid { grid-template-columns: 1fr; gap: 10px; }
+  .transfer-batch-row {
+    grid-template-columns: 60px 1fr;
+    grid-template-areas:
+      "seat person"
+      "seat phone";
+    gap: 2px 10px;
+  }
+  .transfer-batch-arrow { display: none; }
+  .transfer-batch-seat { grid-area: seat; align-self: center; }
+  .transfer-batch-person { grid-area: person; }
+  .transfer-batch-phone { grid-area: phone; font-size: 11px; }
+  .transfer-method { padding: 10px 12px; }
+  .transfer-method-glyph { width: 36px; height: 36px; font-size: 16px; }
+}
+
+/* Game Detail hero — tighter on phones */
+@media (max-width: 540px) {
+  .detail-header { padding: 18px 16px; }
+  .detail-header h1 { font-size: 22px; }
+  .detail-header .meta { font-size: 13px; }
+  .hero-rating-row { gap: 10px; }
+  .hero-reasons { gap: 4px; }
+  .hero-reason-chip { font-size: 11px; padding: 3px 8px; }
+  .hero-tier-hint { font-size: 13px; }
+  .promo-big { font-size: 13px; padding: 5px 12px; }
+  .seat-grid { gap: 12px; }
+  .seat { padding: 14px; }
+}
+
+/* Welcome bar tightens on tiny screens */
+@media (max-width: 480px) {
+  .welcome-bar { padding: 12px 14px; gap: 10px; }
+  .welcome-avatar { width: 44px; height: 44px; font-size: 16px; }
+  .welcome-name { font-size: 18px; }
+  .welcome-meta { font-size: 12px; line-height: 1.3; }
+  .welcome-status { font-size: 11px; padding: 5px 10px; }
+}
+
+/* Mission Control rows breathe better on small screens */
+@media (max-width: 540px) {
+  .sp-mission { padding: 18px 16px; }
+  .sp-mission-headline { font-size: 18px; }
+  .sp-mission-meta { font-size: 12px; }
+  .sp-week-row { padding: 10px 14px; }
+  .sp-week-action { padding: 6px 10px; font-size: 11px; }
+}
+
+/* Tally cells: 2x2 stays but smaller numbers */
+@media (max-width: 480px) {
+  .sp-tally-num { font-size: 20px; }
+  .sp-tally-lead .sp-tally-num { font-size: 17px; }
+  .sp-tally-label { font-size: 11px; }
+}
+
+/* Calendar view: hide on phones (list view is better) */
+@media (max-width: 540px) {
+  .toggle button:nth-child(2) { display: none; } /* hides "Calendar" toggle on Schedule */
+  .cal { display: none; }
+}
+
+/* Achievement cards stack 1-col on phone */
+@media (max-width: 540px) {
+  .ach-grid, .goals-grid { grid-template-columns: 1fr; }
+  .goals-card { padding: 18px 16px; }
+}
+
+/* Tax receipt readable on phones */
+@media (max-width: 540px) {
+  .receipt { padding: 18px 14px; margin: 4px; }
+  .receipt-header { flex-direction: column; gap: 6px; }
+  .receipt-id { text-align: left; }
+  .receipt-title { font-size: 18px; }
+  .receipt-grid { grid-template-columns: 1fr; gap: 10px; padding: 14px 0; }
+  .receipt-total-row { gap: 8px; }
+  .receipt-total { font-size: 24px; }
+  .cover-summary-row {
+    grid-template-columns: 1fr 60px;
+    gap: 4px 10px;
+  }
+  .cover-summary-row > div:nth-child(2),
+  .cover-summary-row > div:nth-child(3) { display: none; }
+  .cover-summary-head > div:nth-child(2),
+  .cover-summary-head > div:nth-child(3) { display: none; }
+}
+
+/* Nonprofit detail tightens */
+@media (max-width: 540px) {
+  .np-hero { padding: 16px 14px; }
+  .np-hero-body { gap: 12px; }
+  .np-hero-avatar { width: 48px; height: 48px; font-size: 18px; }
+  .np-stats { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .np-stat { padding: 12px 14px; }
+  .np-stat-num { font-size: 22px; }
+  .np-donation-row {
+    grid-template-columns: 1fr auto;
+    gap: 6px 12px;
+    grid-template-areas:
+      "game btn"
+      "date count";
+  }
+  .np-don-date { grid-area: date; text-align: left; display: flex; gap: 4px; align-items: baseline; }
+  .np-don-day { font-size: 13px; }
+  .np-don-month { font-size: 11px; }
+  .np-don-game { grid-area: game; }
+  .np-don-matchup { font-size: 15px; }
+  .np-don-meta { font-size: 12px; }
+  .np-donation-row > .btn.small { grid-area: btn; }
+  .np-don-count { grid-area: count; text-align: left; }
+  .np-don-count-num { font-size: 13px; display: inline; }
+  .np-don-count-label { display: inline; margin-left: 3px; }
+  .np-don-value { display: none; }
+}
+
+/* Topbar tagline + tabs on phones */
+@media (max-width: 540px) {
+  .brand .dot { font-size: 18px; }
+  .brand-name { font-size: 16px; }
+}
+
+/* Allow body to scroll when modal isn't open (in case of stuck state) */
+body { overflow-x: hidden; }
+
+/* Tighten the page bottom on phones to account for mobile chrome */
+@media (max-width: 720px) {
+  .main { padding-bottom: max(40px, env(safe-area-inset-bottom)); }
 }
